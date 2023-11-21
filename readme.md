@@ -29,7 +29,7 @@ This section provides detailed instructions on how to set up and run the project
 Begin by cloning the repository to your local machine:
 
 ```
-git clone https://github.com/PabloAmomo/migler.git
+git clone https://github.com/PabloAmomo/mingler.git
 cd mingler\
 ```
 
