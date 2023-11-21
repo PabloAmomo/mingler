@@ -1,0 +1,10 @@
+version: '3.4'
+services:
+  stun-container:
+    container_name: mingler-stun
+    image: scjtqs/stun-server:latest
+    ports: 
+      - '${PORT_STUN}:${PORT_STUN}/tcp'
+      - '${PORT_STUN}:${PORT_STUN}/udp'
+    restart: always
+

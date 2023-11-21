@@ -1,0 +1,32 @@
+version: '3.4'
+services:
+  stun-container:
+    env_file: .env
+    container_name: mingler-stun
+    image: scjtqs/stun-server:latest
+    ports: 
+      - '${PORT_STUN}:${PORT_STUN}/tcp'
+      - '${PORT_STUN}:${PORT_STUN}/udp'
+    restart: always
+
+  server-http:
+    env_file: .env
+    container_name: mingler-server-http
+    build: .
+    command: npm run start-http-${ENVIROMENT}
+    volumes:
+      - .:/usr/app/
+      - /usr/app/node_modules
+    ports:
+      - "${PORT_HTTP}:${PORT_HTTP}"
+
+  server-ws:
+    env_file: .env
+    container_name: mingler-server-ws
+    build: .
+    command: npm run start-ws-${ENVIROMENT}
+    volumes:
+      - .:/usr/app/
+      - /usr/app/node_modules
+    ports:
+      - "${PORT_WS}:${PORT_WS}"

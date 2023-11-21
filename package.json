@@ -1,0 +1,32 @@
+{
+  "name": "mingler",
+  "version": "1.0.0",
+  "description": "Open Source Video/Chat random meetings",
+  "main": "server.js",
+  "scripts": {
+    "start-http-dev": "nodemon ./server/server-http.js -e html,css,js",
+    "start-http-prod": "node ./server/server-http.js",
+    "start-ws-dev": "nodemon ./server/server-ws.js -e html,css,js",
+    "start-ws-prod": "node ./server/server-ws.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Pablo Amomo",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "8.53.0",
+    "nodemon": "3.0.1",
+    "semistandard": "17.0.0"
+  },
+  "eslintConfig": {
+    "extends": "semistandard"
+  },
+  "dependencies": {
+    "body-parser": "1.20.2",
+    "dotenv": "^16.3.1",
+    "express": "4.18.2",
+    "mongose": "0.0.2-security",
+    "morgan": "1.10.0",
+    "mysql": "2.18.1",
+    "socket.io": "4.7.2"
+  }
+}

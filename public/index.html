@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module" src="./js/main.js"></script>
+    <link rel="stylesheet" href="./css/styles.css" />
+    <title></title>
+  </head>
+  <body class="h-100 flex-column background-color text-color initializing">
+    <header class="z-index-900 shadow-10 height-navbar">
+      <nav class="h-100 w-100">
+        <div class="container flex-row align-items-center h-100 pr-05 pl-05">
+          <div data-page="home" class="pr-1 navbar-logo cursor-pointer">
+            <img src="./img/logo-58x58.svg" width="58px" height="58px" />
+          </div>
+          <div data-page="home" class="navbar-title primary-color cursor-pointer">
+            <h2 data-label-id="title-app"></h2>
+          </div>
+          <div class="flex-grow-1 flex"></div>
+          <!-- ----------------- -->
+          <!-- DISCONNECT        -->
+          <!-- ----------------- -->
+          <div data-use-template="header-button" data-variables="{ 'fill-color': 'fill-red', 'data-label-id': 'disconnect', 'data-icon': 'disconnect', 'button-type': 'disconnect' }"></div>
+          <!-- ----------------- -->
+          <!-- NEXT              -->
+          <!-- ----------------- -->
+          <div data-use-template="header-button" data-variables="{ 'fill-color': 'fill-primary-color', 'data-label-id': 'next-chat', 'data-icon': 'nextChat', 'button-type': 'next-chat' }"></div>
+          <!-- ----------------- -->
+          <!-- GOTO HOME         -->
+          <!-- ----------------- -->
+          <div data-use-template="header-button" data-variables="{ 'fill-color': 'fill-primary-color', 'data-label-id': 'home', 'data-icon': 'home', 'button-type': 'goto-homr', 'data-page': 'home' }"></div>
+          <!-- ----------------- -->
+          <!-- CONNECTION STATE  -->
+          <!-- ----------------- -->
+          <div class="flex pr-1">
+            <div class="w-72 flex-column justify-content-center align-items-center connection-state font-size-12">
+              <span class="wh-24 user-select-none" data-icon="disconnected"></span>
+              <span class="connection-state-text text-align-center user-select-none" data-label-id="disconnected"></span>
+              <b><span data-user-id class="hide user-select-none"></span></b>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main class="pt-1 pl-2 pr-2">
+      <!-- ----------------- -->
+      <!-- DISPLAY NAME      -->
+      <!-- ----------------- -->
+      <div id="main-display-name" class="flex-column justify-content-center align-items-center z-index-900">
+        <div class="container flex-column p-2 border-radius-4 shadow-10">
+          <div class="flex mb-1" >
+            <input type="text" id="main-input-display-name" class="w-100 border-radius-4 input-border-1 p-025" data-placeholder-id="displayname" />
+          </div>
+          <div class="flex" >
+            <button id="main-button-display-name" class="button-display-name w-100 border-radius-4 input-border-1 p-025">
+              <a data-label-id="enter"></a>
+          </div>
+        </div>
+      </div>
+      <!-- ----------------- -->
+      <!-- CONNECTING        -->
+      <!-- ----------------- -->
+      <div id="main-connecting" class="flex-column justify-content-center align-items-center z-index-900">
+        <div class="flex justify-content-center align-items-center h-42">
+          <span class="wh-24 fill-white rotate" data-icon="hourGlass"></span>
+        </div>
+        <b><span class="color-white" data-label-id="connecting" class=""></span></b>
+      </div>
+      <!-- ----------------- -->
+      <!-- HOME              -->
+      <!-- ----------------- -->
+      <div id="page-home" data-page-default class="page z-index-600 container">
+        <div data-label-id="welcome"></div>
+
+        <div class="flex-row w-100 flex-space-arround mt-2">
+          <button data-page="chat-text">
+            <a data-label-id="goto-chat-text"></a>
+          </button>
+          <button data-page="chat-video">
+            <a data-label-id="goto-chat-video"></a>
+          </button>
+        </div>
+      </div>
+
+      <!-- ----------------- -->
+      <!-- PAGE CHAT TEXT    -->
+      <!-- ----------------- -->
+      <div id="page-chat-text" data-need-connection="true" class="page container">
+        <!-- TEXT CHAT TEMPLATE -->
+        <div data-use-template="chat-text"></div>
+      </div>
+
+      <!-- ----------------- -->
+      <!-- PAGE CHAT VIDEO   -->
+      <!-- ----------------- -->
+      <div id="page-chat-video" data-need-connection="true" class="page container">
+        <div class="flex-row gap-1">
+          <div class="flex-column align-items-center justify-content-center video-player-container gap-1">
+            <!-- VIDEO LOCAL -->
+            <div class="flex align-items-center justify-content-center video-local-container">
+              <video controls src="" class="video-player border-radius-4 shadow-10-full" autoplay="autoplay" playsinline="playsinline"></video>
+            </div>
+            <!-- VIDEO REMOTE -->
+            <div class="flex align-items-center justify-content-center video-remote-container">
+              <video
+                data-available-in-meeting="true"
+                controls
+                src=""
+                class="video-player border-radius-4 shadow-10-full"
+                autoplay="autoplay"
+                playsinline="playsinline"
+              ></video>
+            </div>
+          </div>
+          <!-- TEXT CHAT TEMPLATE -->
+          <div data-use-template="chat-text"></div>
+        </div>
+      </div>
+    </main>
+
+    <!-- ---------------------------------------- -->
+    <!-- LOADING                                  -->
+    <!-- ---------------------------------------- -->
+    <div class="loading-container z-index-1001">
+      <div class="spinner"></div>
+    </div>
+    <!-- ---------------------------------------- -->
+
+    <!-- ---------------------------------------- -->
+    <!-- TOAST                                    -->
+    <!-- ---------------------------------------- -->
+    <ul class="notifications z-index-1000 flex-column align-items-center positon-fixed"></ul>
+    <!-- ---------------------------------------- -->
+
+    <!-- ------------------------- -->
+    <!-- TEMPLATE - HEADER BUTTON  -->
+    <!-- ------------------------- -->
+    <template id="header-button">
+      <div class="flex justify-content-center">
+        <div class="w-72 flex-column justify-content-center align-items-center cursor-pointer button-header button-{button-type} mr-1" data-page="{data-page}">
+          <span class="wh-24 {fill-color}" data-icon="{data-icon}"></span>
+          <span class="font-size-12 button-text" data-label-id="{data-label-id}"></span>
+        </div>
+      </div>
+    </template>
+    <!-- ------------------------- -->
+    <!-- TEMPLATE - CHAT TEXT      -->
+    <!-- ------------------------- -->
+    <template id="chat-text">
+      <div class="flex-column flex-grow-1 align-items-center justify-content-center video-player-chat-container gap-1">
+        <div>
+          <span data-label-id="connected-with"></span>: <b><span class="connected-with"></span></b>
+        </div>
+        <div
+          data-available-in-meeting="true"
+          class="p-05 chat-messages border-black-1 border-radius-4 input-border-1 w-100 flex-column flex-grow-1 h-100 min-height-20"
+        ></div>
+        <div class="w-100 flex-row gap-1">
+          <div class="input-message flex-grow-1">
+            <textarea data-available-in-meeting="true" class="chat-input-message w-100 h-100 border-radius-4 input-border-1 p-025" rows="4"></textarea>
+          </div>
+          <div class="button-send p-025">
+            <button data-available-in-meeting="true" class="button-send-message h-100 w-auto">
+              <a class="wh-24 fill-white">
+                <svg focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+              </a>
+            </button>
+          </div>
+        </div>
+      </div>
+    </template>
+    <!-- ------------------- -->
+  </body>
+</html>
