@@ -122,7 +122,7 @@ body.no-displayname #main-display-name {
   z-index: 500;
 }
 body.initializing [data-page],
-body.page-home [data-page='home'] {
+body.page-home [data-page='home']:not(.show-always) {
   display: none !important;
 }
 
