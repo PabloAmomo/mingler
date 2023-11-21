@@ -13,5 +13,5 @@ const app = express();
 const path = require('path');
 app.use('/public', express.static(path.resolve(__dirname, '../public')));
 app.use('/', require('./handlers/protocol-http'));
-app.listen(config.http.port, () => console.log(`Server running on port ${config.http.port} - http://localhost:${config.http.port}`));
+app.listen(config.http.port, () => console.log(`Server running on port ${config.http.port} - http://${config.http.url}:${config.http.port}`));
 // ------------------------------------------------

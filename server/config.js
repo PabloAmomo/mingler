@@ -9,7 +9,8 @@ const config = {
     }
   },
   http: {
-    port: process.env.PORT_HTTP || 7000
+    port: process.env.PORT_HTTP || 7000,
+    url: process.env.URL || 'localhost'
   }
 };
 
